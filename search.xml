@@ -32,45 +32,6 @@
       </tags>
   </entry>
   <entry>
-    <title>回归模型评价</title>
-    <url>/2024/05/30/model_%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7/</url>
-    <content><![CDATA[<h1 id="回归模型评价"><a href="#回归模型评价" class="headerlink" title="回归模型评价"></a>回归模型评价</h1><p>回归模型的评价指标：MSE、RMSE、RMSLE、$R^2$。</p>
-<span id="more"></span>
-
-
-<h2 id="MSE-（Mean-Square-Error）均方误差"><a href="#MSE-（Mean-Square-Error）均方误差" class="headerlink" title="MSE （Mean Square Error）均方误差"></a>MSE （Mean Square Error）均方误差</h2><p>MSE是真实值和预测值的差值平方后求平均值，常被用作线性回归的损失函数。</p>
-<p>$$<br>MSE &#x3D; \frac{1}{n} \sum_{i&#x3D;1}^{n} (y_i - \hat{y}_i)^2<br>$$</p>
-<h2 id="RMSE-Root-Mean-Square-Error-均方根误差"><a href="#RMSE-Root-Mean-Square-Error-均方根误差" class="headerlink" title="RMSE (Root Mean Square Error) 均方根误差"></a>RMSE (Root Mean Square Error) 均方根误差</h2><p>RMSE是MSE值的开方，衡量观察值和真实值之间的偏差，常用作机器学习模型预测结果的衡量标准。</p>
-<p>$$<br>RMSE &#x3D; \sqrt{\frac{1}{n} \sum_{i&#x3D;1}^{n} (y_i - \hat{y}_i)^2}<br>$$</p>
-<p>RMSE值的阈值：</p>
-<pre><code>- RMSE值越小，预测模型准确度越高
-- RMSE值低于数据标准差10%，则可被认为是一种较好的预测模型
-- RMSE在数据集是正态分布的情况下，则是一个合适的评价标准；RMSE在数据集中离群点较多或者存在其他异常情况下，则不太合适
-</code></pre>
-<h2 id="MAE-Mean-Absolute-Error-平均绝对误差"><a href="#MAE-Mean-Absolute-Error-平均绝对误差" class="headerlink" title="MAE (Mean Absolute Error) 平均绝对误差"></a>MAE (Mean Absolute Error) 平均绝对误差</h2><p>MAE是绝对误差的平均值，反映预测值误差的实际情况。</p>
-<p>$$<br>MAE &#x3D; \frac{1}{n} \sum_{i&#x3D;1}^{n} |y_i - \hat{y}_i|<br>$$</p>
-<h2 id="RMSLE-Root-Mean-Squared-Logarithmic-Error-均方根对数误差"><a href="#RMSLE-Root-Mean-Squared-Logarithmic-Error-均方根对数误差" class="headerlink" title="RMSLE (Root Mean Squared Logarithmic Error) 均方根对数误差"></a>RMSLE (Root Mean Squared Logarithmic Error) 均方根对数误差</h2><p>RMSLE关注相对误差：</p>
-<pre><code>- 对数误差能降低数值较大的目标变量的影响，使得评估过程更关注相对误差
-- 平方根误差可以放大小误差，更有助于模型拟合数据
-- 对数均方根误差不适用于目标变量存在负值的情况
-</code></pre>
-<p>$$<br>RMSLE &#x3D; \sqrt{\frac{1}{n} \sum_{i&#x3D;1}^{n} \left( \log(\hat{y}_i + 1) - \log(y_i + 1) \right)^2}<br>$$</p>
-<h2 id="R-2-可决系数"><a href="#R-2-可决系数" class="headerlink" title="$R^2$ 可决系数"></a>$R^2$ 可决系数</h2><p>$R^2$是拟合优度，反映的是自变量X对因变量y的变动的解释程度，越接近于1，说明模型拟合越好。</p>
-<p>$$<br>R^2 &#x3D; 1 - \frac{SS_{res}}{SS_{tot}}<br>$$</p>
-<p>$SS_{res}$是残差平方和，衡量了观测值与模型预测值之间的偏差</p>
-<p>$$<br>SS_{res} &#x3D; \sum_{i&#x3D;1}^{n} (y_i - \hat{y}_i)^2<br>$$</p>
-<p>$SS_{tot}$是总平方和，衡量了因变量的总方差。</p>
-<p>$$<br>SS_{tot} &#x3D; \sum_{i&#x3D;1}^{n} (y_i - \bar{y})^2<br>$$</p>
-]]></content>
-      <categories>
-        <category>Model</category>
-      </categories>
-      <tags>
-        <tag>Model_train</tag>
-        <tag>Regression</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>python循环优化</title>
     <url>/2024/05/28/python_%E5%BE%AA%E7%8E%AF%E4%BC%98%E5%8C%96/</url>
     <content><![CDATA[<h1 id="python循环优化"><a href="#python循环优化" class="headerlink" title="python循环优化"></a>python循环优化</h1><p>python中经常使用到for循环，需要消耗大量时间，本文将介绍一些简单的方法进行提速。</p>
@@ -145,6 +106,45 @@
       </categories>
       <tags>
         <tag>underlying</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回归模型评价</title>
+    <url>/2024/05/30/model_%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7/</url>
+    <content><![CDATA[<h1 id="回归模型评价"><a href="#回归模型评价" class="headerlink" title="回归模型评价"></a>回归模型评价</h1><p>回归模型的评价指标：MSE、RMSE、RMSLE、$R^2$。</p>
+<span id="more"></span>
+
+
+<h2 id="MSE-（Mean-Square-Error）均方误差"><a href="#MSE-（Mean-Square-Error）均方误差" class="headerlink" title="MSE （Mean Square Error）均方误差"></a>MSE （Mean Square Error）均方误差</h2><p>MSE是真实值和预测值的差值平方后求平均值，常被用作线性回归的损失函数。</p>
+<p>$$<br>MSE &#x3D; \frac{1}{n} \sum_{i&#x3D;1}^{n} (y_i - \hat{y}_i)^2<br>$$</p>
+<h2 id="RMSE-Root-Mean-Square-Error-均方根误差"><a href="#RMSE-Root-Mean-Square-Error-均方根误差" class="headerlink" title="RMSE (Root Mean Square Error) 均方根误差"></a>RMSE (Root Mean Square Error) 均方根误差</h2><p>RMSE是MSE值的开方，衡量观察值和真实值之间的偏差，常用作机器学习模型预测结果的衡量标准。</p>
+<p>$$<br>RMSE &#x3D; \sqrt{\frac{1}{n} \sum_{i&#x3D;1}^{n} (y_i - \hat{y}_i)^2}<br>$$</p>
+<p>RMSE值的阈值：</p>
+<pre><code>- RMSE值越小，预测模型准确度越高
+- RMSE值低于数据标准差10%，则可被认为是一种较好的预测模型
+- RMSE在数据集是正态分布的情况下，则是一个合适的评价标准；RMSE在数据集中离群点较多或者存在其他异常情况下，则不太合适
+</code></pre>
+<h2 id="MAE-Mean-Absolute-Error-平均绝对误差"><a href="#MAE-Mean-Absolute-Error-平均绝对误差" class="headerlink" title="MAE (Mean Absolute Error) 平均绝对误差"></a>MAE (Mean Absolute Error) 平均绝对误差</h2><p>MAE是绝对误差的平均值，反映预测值误差的实际情况。</p>
+<p>$$<br>MAE &#x3D; \frac{1}{n} \sum_{i&#x3D;1}^{n} |y_i - \hat{y}_i|<br>$$</p>
+<h2 id="RMSLE-Root-Mean-Squared-Logarithmic-Error-均方根对数误差"><a href="#RMSLE-Root-Mean-Squared-Logarithmic-Error-均方根对数误差" class="headerlink" title="RMSLE (Root Mean Squared Logarithmic Error) 均方根对数误差"></a>RMSLE (Root Mean Squared Logarithmic Error) 均方根对数误差</h2><p>RMSLE关注相对误差：</p>
+<pre><code>- 对数误差能降低数值较大的目标变量的影响，使得评估过程更关注相对误差
+- 平方根误差可以放大小误差，更有助于模型拟合数据
+- 对数均方根误差不适用于目标变量存在负值的情况
+</code></pre>
+<p>$$<br>RMSLE &#x3D; \sqrt{\frac{1}{n} \sum_{i&#x3D;1}^{n} \left( \log(\hat{y}_i + 1) - \log(y_i + 1) \right)^2}<br>$$</p>
+<h2 id="R-2-可决系数"><a href="#R-2-可决系数" class="headerlink" title="$R^2$ 可决系数"></a>$R^2$ 可决系数</h2><p>$R^2$是拟合优度，反映的是自变量X对因变量y的变动的解释程度，越接近于1，说明模型拟合越好。</p>
+<p>$$<br>R^2 &#x3D; 1 - \frac{SS_{res}}{SS_{tot}}<br>$$</p>
+<p>$SS_{res}$是残差平方和，衡量了观测值与模型预测值之间的偏差</p>
+<p>$$<br>SS_{res} &#x3D; \sum_{i&#x3D;1}^{n} (y_i - \hat{y}_i)^2<br>$$</p>
+<p>$SS_{tot}$是总平方和，衡量了因变量的总方差。</p>
+<p>$$<br>SS_{tot} &#x3D; \sum_{i&#x3D;1}^{n} (y_i - \bar{y})^2<br>$$</p>
+]]></content>
+      <categories>
+        <category>Model</category>
+      </categories>
+      <tags>
+        <tag>Model_train</tag>
+        <tag>Regression</tag>
       </tags>
   </entry>
 </search>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>ioligo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="pluaron">
+  <meta name="keywords" content="oligo, sequence, probe, FISH">
+  <meta name="description" content="Oligonucleotide sequence design">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.4.4',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/dist/images/html_tag.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/css/main.min.css">
+  
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.jside.menu.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+<div  class="single">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div class="header">
+  <div id="lx-aside" style="background-image: url(/dist/images/post_cover.min.jpeg)" data-stellar-background-ratio="0.5">
+    <div class="overlay">
+      <a href="javascript:;" class="popup-trigger" title="search"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+      <div class="page-title">
+        <div class="avatar"><a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"></a></div>
+        <span>2024-05-28</span>
+        <h2></h2>
+        
+        <div class="social-links">
+    <a href="https://github.com/iOLIGO" target="_blank" title="social-link"><i class="fa fa-github fa-fw"></i></a>
+    <a href="2119452560@qq.com" target="_blank" title="social-link"><i class="fa fa-envelope fa-fw"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="lx-main-content">
+  <div class="lx-post"> 
+    <div class="lx-entry padding">
+      <div>
+        <h2 id="OLIGO"><a href="#OLIGO" class="headerlink" title="OLIGO"></a>OLIGO</h2><p>Python object for reading oligo files. Oligo is essentially a txt file, contains head and body. Sample file is in path(tests&#x2F;test_data&#x2F;test.oligo).</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> ioligo <span class="keyword">import</span> OLIGO</span><br><span class="line">oligo_file = <span class="string">&quot;tests/test_data/oligo/test.oligo&quot;</span></span><br><span class="line">oligo_test = OLIGO()</span><br><span class="line">oligo_test.read(oligo_file)</span><br><span class="line">oligo_test.name </span><br><span class="line"><span class="comment"># &#x27;sample&#x27;</span></span><br><span class="line">oligo_test.origin</span><br><span class="line"><span class="comment"># &#123;&#x27;fa&#x27;: [&#x27;hg19&#x27;, &#x27;mm10&#x27;], &#x27;gtf&#x27;: [&#x27;gtf1&#x27;, &#x27;gtf2&#x27;], &#x27;location&#x27;: [&#x27;1:chr1:0:5000:+&#x27;, &#x27;1:chr2:2000:3000:-&#x27;]&#125;</span></span><br><span class="line">oligo_test.origin_tools</span><br><span class="line"><span class="comment"># &#123;&#x27;tools&#x27;: [&#x27;tools1&#x27;, &#x27;tools2&#x27;], &#x27;version&#x27;: [&#x27;version1&#x27;, &#x27;version2&#x27;], &#x27;params&#x27;: [&#x27;params1&#x27;, &#x27;params2&#x27;]&#125;</span></span><br><span class="line">oligo_test.temp</span><br><span class="line"><span class="comment"># &#123;&#x27;low&#x27;: 35.0, &#x27;high&#x27;: 45.0&#125;</span></span><br><span class="line">oligo_test.to_oligo()</span><br><span class="line"><span class="comment"># ./sample.oligo</span></span><br><span class="line">oligo_test.to_oligo5()</span><br><span class="line"><span class="comment"># ./sample.oligo5</span></span><br><span class="line">oligo_test.<span class="built_in">help</span>()</span><br><span class="line"><span class="comment"># &quot;more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="header"><a href="#header" class="headerlink" title="header"></a>header</h2><p>All start with <code>#</code>, which records the characteristic information of the oligonucleotide.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Attributes</th>
+<th align="center">Use</th>
+<th align="center">Sample</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">name</td>
+<td align="center">info</td>
+<td align="center">oligo1</td>
+</tr>
+<tr>
+<td align="center">group</td>
+<td align="center">info</td>
+<td align="center">G-oligo1</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">Nucleotide species</td>
+<td align="center">DNA</td>
+</tr>
+<tr>
+<td align="center">origin</td>
+<td align="center">source of oligonucleotides</td>
+<td align="center">hg19;hg19_gtf;1:chr1:1:10000:+</td>
+</tr>
+<tr>
+<td align="center">origin_tools</td>
+<td align="center">tools</td>
+<td align="center">bedtools;v1.0;default</td>
+</tr>
+<tr>
+<td align="center">target</td>
+<td align="center">target region</td>
+<td align="center">hg19;hg19_gtf;1:chr1:1:10000:+</td>
+</tr>
+<tr>
+<td align="center">origin_tools</td>
+<td align="center">tools</td>
+<td align="center">bowtie2;v1.0;default</td>
+</tr>
+<tr>
+<td align="center">negative</td>
+<td align="center">negative region</td>
+<td align="center">mm10;;1:chr2:1:10000:-</td>
+</tr>
+<tr>
+<td align="center">negative_tools</td>
+<td align="center">tools</td>
+<td align="center">blast;v1.0;default</td>
+</tr>
+<tr>
+<td align="center">hkmer</td>
+<td align="center">hkmer jf</td>
+<td align="center">mm10;;</td>
+</tr>
+<tr>
+<td align="center">hkmer_tools</td>
+<td align="center">tools</td>
+<td align="center">jellyfish;v1.0;default</td>
+</tr>
+<tr>
+<td align="center">temp</td>
+<td align="center">Binding temperature range</td>
+<td align="center">35;45</td>
+</tr>
+<tr>
+<td align="center">temp_tools</td>
+<td align="center">tools</td>
+<td align="center">nupcak;v1.0;default</td>
+</tr>
+<tr>
+<td align="center">ss</td>
+<td align="center">secondary structures range</td>
+<td align="center">0;0.3</td>
+</tr>
+<tr>
+<td align="center">ss_tools</td>
+<td align="center">tools</td>
+<td align="center">nupcak;v1.0;default</td>
+</tr>
+<tr>
+<td align="center">date</td>
+<td align="center">info</td>
+<td align="center">20240423</td>
+</tr>
+<tr>
+<td align="center">author</td>
+<td align="center">info</td>
+<td align="center">ilead-cong</td>
+</tr>
+<tr>
+<td align="center">email</td>
+<td align="center">info</td>
+<td align="center"><a href="mailto:&#50;&#49;&#x31;&#57;&#52;&#53;&#x32;&#53;&#54;&#x30;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;">&#50;&#49;&#x31;&#57;&#52;&#53;&#x32;&#53;&#54;&#x30;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;</a></td>
+</tr>
+<tr>
+<td align="center">add</td>
+<td align="center">info</td>
+<td align="center">5’-AATTCC</td>
+</tr>
+<tr>
+<td align="center">other_info</td>
+<td align="center">info</td>
+<td align="center">nice oligo</td>
+</tr>
+</tbody></table>
+<h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><p>For an oligo file, oligo name is required.</p>
+<h3 id="group"><a href="#group" class="headerlink" title="group"></a>group</h3><p>Group is used to classify and organize oligo files and is optional. If it does not exist, the default is to add <code>G-</code> in front of the name attribute, like ‘ G-{oligo.name}’</p>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>types of oligonucleotides: DNA or RNA.</p>
+<h3 id="origin"><a href="#origin" class="headerlink" title="origin"></a>origin</h3><p>The source of oligonucleotides, including genome, annotation, and location. The three are separated by semicolons, like <code>&#123;genome;annotation;location&#125;</code> or <code>&#123;genome1,genome2,genome3;annotation1,annotation2,annotation3;location1,location2,location3&#125;</code>. More info: <code>genome1 &lt;-&gt; annotation1 &lt;-&gt; location1</code>.</p>
+<ul>
+<li><p>genome: Record the identity information of the reference genome fa file, such as version name or download address, separated by commas, like <code>&#123;fa1_URL,fa2_URL,fa3_version&#125;</code>.</p>
+</li>
+<li><p>annotation: Record the identity information of the reference genome gtf file, such as version name or download address, separated by commas, like <code>&#123;gtf1_URL,gtf2_URL,fa3_version&#125;</code>.</p>
+</li>
+<li><p>location: Record the identity information of the reference genome location information,separated by commas, like <code>&#123;location1,location2,location3&#125;</code>.</p>
+</li>
+<li><p>more info: The location attribute consists of genomeid, chromosome name, starting position, ending position, and positive and <a target="_blank" rel="noopener" href="https://www.biostars.org/p/3423/">strands</a>, separated by colons, like <code>&#123;geonemid,chrom,start,end,strand&#125;</code> or <code>&#123;genomeid,all&#125;</code>.If the strand value in the location does not exist, the default is the <code>+</code> strand.</p>
+</li>
+</ul>
+<h3 id="target"><a href="#target" class="headerlink" title="target"></a>target</h3><p>The target region targeted by the oligonucleotide. The format refers to the origin attribute.</p>
+<h3 id="negative"><a href="#negative" class="headerlink" title="negative"></a>negative</h3><p>The negative target region targeted by the oligonucleotide. The format refers to the origin attribute.</p>
+<h3 id="hkmer"><a href="#hkmer" class="headerlink" title="hkmer"></a>hkmer</h3><p>The <a target="_blank" rel="noopener" href="https://github.com/gmarcais/Jellyfish/blob/master/doc/Readme.md#Counting-high-frequency-k-mers">high frequency k-mers</a> target region targeted by the oligonucleotide. The format refers to the origin attribute.</p>
+<h3 id="origin-tools"><a href="#origin-tools" class="headerlink" title="origin_tools"></a>origin_tools</h3><p>Record the tools used by origin, including tool name, version, and parameters, separated by semicolons, like <code>&#123;tools;version;params&#125;</code> or <code>&#123;tools1,tools2;version1,version2;param1,param2&#125;</code>.</p>
+<p>More info: if the location attribute of the origin exists, it corresponds to one; otherwise, it corresponds to the genome attribute.</p>
+<h3 id="target-tools"><a href="#target-tools" class="headerlink" title="target_tools"></a>target_tools</h3><p>Record the tools used by target, the format refers to the origin_tools attribute.</p>
+<h3 id="negative-tools"><a href="#negative-tools" class="headerlink" title="negative_tools"></a>negative_tools</h3><p>Record the tools used by negative, the format refers to the origin_tools attribute.</p>
+<h3 id="hkmer-tools"><a href="#hkmer-tools" class="headerlink" title="hkmer_tools"></a>hkmer_tools</h3><p>Record the tools used by hkmer, the format refers to the hkmer_tools attribute.</p>
+<h3 id="temp"><a href="#temp" class="headerlink" title="temp"></a>temp</h3><p>Binding temperature of oligonucleotide and its reverse complement, like <code>&#123;low,high&#125;</code>.</p>
+<h3 id="temp-tools"><a href="#temp-tools" class="headerlink" title="temp_tools"></a>temp_tools</h3><p>Record the tools used by temp, like <code>&#123;tools,version,param&#125;</code>.</p>
+<h3 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h3><p>Probability of oligonucleotides forming secondary structures, like <code>&#123;low,high&#125;</code>.</p>
+<h3 id="ss-tools"><a href="#ss-tools" class="headerlink" title="ss_tools"></a>ss_tools</h3><p>Record the tools used by ss, like <code>&#123;tools,version,param&#125;</code>.</p>
+<h3 id="date"><a href="#date" class="headerlink" title="date"></a>date</h3><p>Date the oligonucleotide was produced.</p>
+<h3 id="author"><a href="#author" class="headerlink" title="author"></a>author</h3><p>Creator of oligonucleotide generation.</p>
+<h3 id="email"><a href="#email" class="headerlink" title="email"></a>email</h3><p>The creator’s email address of the oligonucleotide generated.</p>
+<h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>Add fixed sequence at the 3’ or 5’ end of the oligo sequence.</p>
+<h3 id="other-info"><a href="#other-info" class="headerlink" title="other_info"></a>other_info</h3><p>Other information that needs to be recorded.</p>
+<h2 id="body"><a href="#body" class="headerlink" title="body"></a>body</h2><p>Tab-delimited matrix file with column names, used to record oligonucleotide details.</p>
+
+      </div>
+    </div>		
+  </div>
+</div>
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2024.<a href="/">ioligo</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br><a target="_blank" rel="noopener" href="https://github.com/iOLIGO">Star</a> me if you like.
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button" title="menu">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button>
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>pluaron</p>
+          <span class="tagline">oligo tools</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Model/">Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li></ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
+        <ul>
+          <li><a href="/docs/">docs</a></li>
+        <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/local.search.min.js"></script>
+
+</body>
+</html>

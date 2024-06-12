@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>ioligo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="pluaron">
+  <meta name="keywords" content="oligo, sequence, probe, FISH">
+  <meta name="description" content="Oligonucleotide sequence design">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.4.4',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/dist/images/html_tag.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/css/main.min.css">
+  
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.jside.menu.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+<div  class="single">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div class="header">
+  <div id="lx-aside" style="background-image: url(/dist/images/post_cover.min.jpeg)" data-stellar-background-ratio="0.5">
+    <div class="overlay">
+      <a href="javascript:;" class="popup-trigger" title="search"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+      <div class="page-title">
+        <div class="avatar"><a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"></a></div>
+        <span>2024-06-12</span>
+        <h2></h2>
+        
+        <div class="social-links">
+    <a href="https://github.com/iOLIGO" target="_blank" title="social-link"><i class="fa fa-github fa-fw"></i></a>
+    <a href="2119452560@qq.com" target="_blank" title="social-link"><i class="fa fa-envelope fa-fw"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="lx-main-content">
+  <div class="lx-post"> 
+    <div class="lx-entry padding">
+      <div>
+        <h1 id="GTF"><a href="#GTF" class="headerlink" title="GTF"></a>GTF</h1><h2 id="CLASS"><a href="#CLASS" class="headerlink" title="CLASS"></a>CLASS</h2><h3 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h3><p>CDS, start_codon, stop_codon, UTR5, UTR3, other and other annotation types use this class.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Attributes</th>
+<th align="center">data type</th>
+<th align="center">info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">chr</td>
+<td align="center">str</td>
+<td align="center">chromosome</td>
+</tr>
+<tr>
+<td align="center">start</td>
+<td align="center">int</td>
+<td align="center">location start</td>
+</tr>
+<tr>
+<td align="center">end</td>
+<td align="center">int</td>
+<td align="center">location end</td>
+</tr>
+<tr>
+<td align="center">strand</td>
+<td align="center">str</td>
+<td align="center">strand ‘+’ or ‘-‘</td>
+</tr>
+</tbody></table>
+<p>more info: The attribute value of <code>BASE</code> is readable. That is, after reading from the gtf file for the first time, it cannot be modified.</p>
+<h3 id="EXON"><a href="#EXON" class="headerlink" title="EXON"></a>EXON</h3><p>Record exon related information.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Attributes</th>
+<th align="center">data type</th>
+<th align="center">info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">chr</td>
+<td align="center">str</td>
+<td align="center">exon chromosome</td>
+</tr>
+<tr>
+<td align="center">start</td>
+<td align="center">int</td>
+<td align="center">exon location start</td>
+</tr>
+<tr>
+<td align="center">end</td>
+<td align="center">int</td>
+<td align="center">lexon ocation end</td>
+</tr>
+<tr>
+<td align="center">strand</td>
+<td align="center">str</td>
+<td align="center">exon strand ‘+’ or ‘-‘</td>
+</tr>
+<tr>
+<td align="center">id</td>
+<td align="center">str</td>
+<td align="center">exon id</td>
+</tr>
+</tbody></table>
+<p>more info: The attribute value of <code>EXON</code> is readable. That is, after reading from the gtf file for the first time, it cannot be modified.</p>
+<h3 id="TRANSCRIPT"><a href="#TRANSCRIPT" class="headerlink" title="TRANSCRIPT"></a>TRANSCRIPT</h3><p>Record transcript related information.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Attributes</th>
+<th align="center">data type</th>
+<th align="center">info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">id</td>
+<td align="center">str</td>
+<td align="center">transcript id</td>
+</tr>
+<tr>
+<td align="center">name</td>
+<td align="center">str</td>
+<td align="center">transcript name</td>
+</tr>
+<tr>
+<td align="center">chr</td>
+<td align="center">str</td>
+<td align="center">transcript location chromosome</td>
+</tr>
+<tr>
+<td align="center">start</td>
+<td align="center">int</td>
+<td align="center">transcript location start</td>
+</tr>
+<tr>
+<td align="center">end</td>
+<td align="center">int</td>
+<td align="center">transcript location end</td>
+</tr>
+<tr>
+<td align="center">strand</td>
+<td align="center">str</td>
+<td align="center">transcript strand ‘+’ or ‘-‘</td>
+</tr>
+<tr>
+<td align="center">CDS</td>
+<td align="center">List[BASE]</td>
+<td align="center">transcript CDSs</td>
+</tr>
+<tr>
+<td align="center">start_codon</td>
+<td align="center">List[BASE]</td>
+<td align="center">transcript start_codons</td>
+</tr>
+<tr>
+<td align="center">stop_codon</td>
+<td align="center">List[BASE]</td>
+<td align="center">transcript stop_codons</td>
+</tr>
+<tr>
+<td align="center">UTR5</td>
+<td align="center">List[BASE]</td>
+<td align="center">transcript UTR5s</td>
+</tr>
+<tr>
+<td align="center">UTR3</td>
+<td align="center">List[BASE]</td>
+<td align="center">transcript UTR3s</td>
+</tr>
+<tr>
+<td align="center">exons</td>
+<td align="center">Dict[EXON.id]&#x3D;EXON</td>
+<td align="center">transcript exons</td>
+</tr>
+<tr>
+<td align="center">other</td>
+<td align="center">List[BASE]</td>
+<td align="center">transcript other annotation types</td>
+</tr>
+</tbody></table>
+<h3 id="GENE"><a href="#GENE" class="headerlink" title="GENE"></a>GENE</h3><p>Record gene related information.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Attributes</th>
+<th align="center">data type</th>
+<th align="center">info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">id</td>
+<td align="center">str</td>
+<td align="center">gene id</td>
+</tr>
+<tr>
+<td align="center">name</td>
+<td align="center">str</td>
+<td align="center">gene name</td>
+</tr>
+<tr>
+<td align="center">chr</td>
+<td align="center">str</td>
+<td align="center">gene location chromosome</td>
+</tr>
+<tr>
+<td align="center">start</td>
+<td align="center">int</td>
+<td align="center">gene location start</td>
+</tr>
+<tr>
+<td align="center">end</td>
+<td align="center">int</td>
+<td align="center">gene location end</td>
+</tr>
+<tr>
+<td align="center">strand</td>
+<td align="center">str</td>
+<td align="center">gene strand ‘+’ or ‘-‘</td>
+</tr>
+<tr>
+<td align="center">trans</td>
+<td align="center">Dict[TRANSCRIPT.id]&#x3D;TRANSCRIPT</td>
+<td align="center">gene transcripts</td>
+</tr>
+<tr>
+<td align="center">trans_map</td>
+<td align="center">Dict[TRANSCRIPT.name] &#x3D; TRANSCRIPT.id</td>
+<td align="center">map of id and name</td>
+</tr>
+</tbody></table>
+<h3 id="GTF-1"><a href="#GTF-1" class="headerlink" title="GTF"></a>GTF</h3><p>Parse GTF files</p>
+<table>
+<thead>
+<tr>
+<th align="center">Attributes</th>
+<th align="center">data type</th>
+<th align="center">info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">name</td>
+<td align="center">str</td>
+<td align="center">gtf name</td>
+</tr>
+<tr>
+<td align="center">version</td>
+<td align="center">str</td>
+<td align="center">gtf version</td>
+</tr>
+<tr>
+<td align="center">URL</td>
+<td align="center">str</td>
+<td align="center">download URL of gtf file</td>
+</tr>
+<tr>
+<td align="center">genes</td>
+<td align="center">Dict[GENE.id]&#x3D;GENE</td>
+<td align="center">gtf genes</td>
+</tr>
+<tr>
+<td align="center">genes_map</td>
+<td align="center">Dict[GENE.name]&#x3D;GENE.id</td>
+<td align="center">map of id and name</td>
+</tr>
+<tr>
+<td align="center">genes_interval</td>
+<td align="center">Dict[chromosome]&#x3D;IntervalTree</td>
+<td align="center">genes location projects to IntervalTree</td>
+</tr>
+<tr>
+<td align="center">err</td>
+<td align="center">List</td>
+<td align="center">Lines in gtf file that cannot be correctly recognized</td>
+</tr>
+<tr>
+<td align="center">anno_map</td>
+<td align="center">Dict[attributes]&#x3D;description</td>
+<td align="center">Commonly used gene structure attributes and their corresponding relationships described in gtf files</td>
+</tr>
+</tbody></table>
+<h4 id="annotation-type-map"><a href="#annotation-type-map" class="headerlink" title="annotation type map"></a>annotation type map</h4><p>annotation type map, the corresponding description relationship between annotation attributes and annotation types description in annotation files.</p>
+<h5 id="raw-map-table"><a href="#raw-map-table" class="headerlink" title="raw map table"></a>raw map table</h5><table>
+<thead>
+<tr>
+<th align="center">Attributes</th>
+<th align="center">description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">gene</td>
+<td align="center">gene</td>
+</tr>
+<tr>
+<td align="center">trans</td>
+<td align="center">transcript</td>
+</tr>
+<tr>
+<td align="center">exon</td>
+<td align="center">exon</td>
+</tr>
+<tr>
+<td align="center">CDS</td>
+<td align="center">CDS</td>
+</tr>
+<tr>
+<td align="center">start_codon</td>
+<td align="center">start_codon</td>
+</tr>
+<tr>
+<td align="center">stop_codon</td>
+<td align="center">stop_codon</td>
+</tr>
+<tr>
+<td align="center">UTR5</td>
+<td align="center">five_prime_utr</td>
+</tr>
+<tr>
+<td align="center">UTR3</td>
+<td align="center">three_prime_utr</td>
+</tr>
+<tr>
+<td align="center">other</td>
+<td align="center">other</td>
+</tr>
+</tbody></table>
+<p>more info: <code>other</code> is an additional reserved attribute for reading special cases that do not exist in the table but exist in the gtf file.</p>
+<h5 id="map-table-description-content-replacement"><a href="#map-table-description-content-replacement" class="headerlink" title="map table description content replacement"></a>map table description content replacement</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> annokit <span class="keyword">import</span> GTF</span><br><span class="line">gtf = GTF()</span><br><span class="line">gtf_file = <span class="string">&quot;./test/test.gtf&quot;</span></span><br><span class="line">anno_map = <span class="string">&quot;UTR5,UTR5;other,other_anno&quot;</span></span><br><span class="line">gtf.read(gtf_file, name=<span class="string">&quot;test&quot;</span>, anno_map=anno_map)</span><br><span class="line">gtf.anno_map</span><br><span class="line"><span class="comment"># &quot; &#123;&#x27;gene&#x27;: &#x27;gene&#x27;, &#x27;trans&#x27;: &#x27;transcript&#x27;, &#x27;exon&#x27;: &#x27;exon&#x27;, &#x27;CDS&#x27;: &#x27;CDS&#x27;, &#x27;start_codon&#x27;: &#x27;start_codon&#x27;, &#x27;stop_codon&#x27;: &#x27;stop_codon&#x27;, &#x27;UTR5&#x27;: &#x27;UTR5&#x27;, &#x27;UTR3&#x27;: &#x27;three_prime_utr&#x27;, &#x27;other&#x27;: &#x27;other_anno&#x27;&#125; &quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>more info: anno_map can modify the gtf description corresponding to multiple attributes at the same time, separated by semicolons, and the attributes and descriptions are separated by commas, like ‘<code>&#123;attributes1&#125;,&#123;description1&#125;;&#123;attributes2&#125;,&#123;description2&#125;;...;&#123;attributesN&#125;,&#123;descriptionN&#125;</code>‘</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> annokit <span class="keyword">import</span> GTF</span><br><span class="line">gtf = GTF()</span><br><span class="line">gtf_file = <span class="string">&quot;./test/test.gtf&quot;</span></span><br><span class="line">gtf.read(gtf_file, name=<span class="string">&quot;test&quot;</span>, version=<span class="string">&quot;1.0&quot;</span>, URL=<span class="string">&quot;none&quot;</span>)</span><br><span class="line">gtf.name</span><br><span class="line"><span class="comment"># &#x27;test&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>more info: The three parameters <code>name</code>, <code>version</code> and <code>URL</code> are all optional parameters. The main purpose is to record the relevant information of the gtf file.</p>
+<h3 id="interval-search"><a href="#interval-search" class="headerlink" title="interval search"></a>interval search</h3><p><a target="_blank" rel="noopener" href="https://github.com/chaimleib/intervaltree">intervaltree</a>: a mutable, self-balancing interval tree for Python 2 and 3. Queries may be by point, by range overlap, or by range envelopment.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> annokit <span class="keyword">import</span> GTF</span><br><span class="line">gtf = GTF()</span><br><span class="line">gtf_file = <span class="string">&quot;./test/test.gtf&quot;</span></span><br><span class="line">gtf.read(gtf_file, name=<span class="string">&quot;test&quot;</span>, version=<span class="string">&quot;1.0&quot;</span>, URL=<span class="string">&quot;none&quot;</span>)</span><br><span class="line">loc = <span class="string">&quot;chr1:1000:5000&quot;</span></span><br><span class="line">genes = gtf.searchs(loc)</span><br><span class="line">genes</span><br><span class="line"><span class="comment"># &#x27;[geneid1, geneid2, ..., geneidn]&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>more info: The location parameter consists of the chromosome, starting position, and ending position, with a colon between them, like ‘<code>&#123;chr&#125;:&#123;start&#125;:&#123;end&#125;</code>‘.</p>
+<h3 id="gene-inquires"><a href="#gene-inquires" class="headerlink" title="gene inquires"></a>gene inquires</h3><p>Use the gene ID or name to query the related information of the gene in the gtf file, and output it in the DataFrame format of pandas.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> annokit <span class="keyword">import</span> GTF</span><br><span class="line">gtf = GTF()</span><br><span class="line">gtf_file = <span class="string">&quot;./test/test.gtf&quot;</span></span><br><span class="line">gtf.read(gtf_file, name=<span class="string">&quot;test&quot;</span>, version=<span class="string">&quot;1.0&quot;</span>, URL=<span class="string">&quot;none&quot;</span>)</span><br><span class="line">genes_name = <span class="string">&quot;genename1;genename2&quot;</span></span><br><span class="line">gtf.inquires(genes_name, itype=<span class="string">&quot;name&quot;</span>, ilevel=<span class="string">&quot;gene&quot;</span>)</span><br><span class="line">geneids = <span class="string">&quot;geneid1;geneid2;geneid3&quot;</span></span><br><span class="line">gtf.inquires(geneids, itype=<span class="string">&quot;id&quot;</span>, ilevel=<span class="string">&quot;exon&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">ilevel</th>
+<th align="center">gene</th>
+<th align="center">trans</th>
+<th align="center">exon</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">geneid</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">genename</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">chr</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">start</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">end</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">strand</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">transid</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">transname</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">transstart</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">transend</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">exonid</td>
+<td align="center">✕</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">exonstart</td>
+<td align="center">✕</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">exonend</td>
+<td align="center">✕</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+</tr>
+</tbody></table>
+<p>If the corresponding information is missing, the replacement rules are as follows:</p>
+<ul>
+<li><p>str: String types are replaced by <code>-</code>, such as <code>id</code>, <code>name</code>, <code>chr</code>, <code>strand</code> and other attributes.</p>
+</li>
+<li><p>int: The int data type is replaced by <code>0</code>, such as <code>start</code>, <code>end</code> and other attributes.</p>
+</li>
+</ul>
+<h3 id="name2id-or-id2name"><a href="#name2id-or-id2name" class="headerlink" title="name2id or id2name"></a>name2id or id2name</h3><p>Convert gene name and id to each other</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># n2i</span></span><br><span class="line"><span class="keyword">from</span> annokit <span class="keyword">import</span> GTF</span><br><span class="line">gtf = GTF()</span><br><span class="line">gtf_file = <span class="string">&quot;./test/test.gtf&quot;</span></span><br><span class="line">genes_name = <span class="string">&quot;genename1;genename2&quot;</span></span><br><span class="line">gtf.read(gtf_file, name=<span class="string">&quot;test&quot;</span>, version=<span class="string">&quot;1.0&quot;</span>, URL=<span class="string">&quot;none&quot;</span>)</span><br><span class="line">gtf.maps(genes_name, mapType=<span class="string">&#x27;n2i&#x27;</span>)</span><br><span class="line"><span class="comment"># Warning: not found genename genename2 in gtf</span></span><br><span class="line"><span class="comment"># &quot;&#123;&#x27;genename1&#x27;:&#x27;geneid1&#x27;, &#x27;genename2&#x27;:&#x27;None&#x27;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># i2n</span></span><br><span class="line">genes_id = <span class="string">&quot;geneid1,geneid2&quot;</span></span><br><span class="line">gtf.maps(genes_id, <span class="string">&#x27;i2n&#x27;</span>)</span><br><span class="line"><span class="comment"># &quot;&#123;&#x27;geneid1&#x27;:&#x27;genename1&#x27;, &#x27;geneid2&#x27;:&#x27;genename2&#x27;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>genes_id: <code>geneid1,geneid2,...,geneidN</code></p>
+</li>
+<li><p>genes_name: <code>genename1,genename2,...,genenameN</code></p>
+</li>
+</ul>
+<h2 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h2><h3 id="interval-search-1"><a href="#interval-search-1" class="headerlink" title="interval search"></a>interval search</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AnnoGtf -t searchs -g test.gtf -l chr1:1000:5000 -o test -od ./ -am UTR5,UTR5\;other,other_anno</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="name2id-or-id2name-1"><a href="#name2id-or-id2name-1" class="headerlink" title="name2id or id2name"></a>name2id or id2name</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">genes</span></span><br><span class="line">AnnoGtf -t maps -g test.gtf -m i2n -gs geneid1,genid2 -o test -od ./ -am UTR5,UTR5\;other,other_anno</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">genes file</span></span><br><span class="line">AnnoGtf -t maps -g test.gtf -m n2i -gf genename.tsv -o test -od ./ -am UTR5,UTR5\;other,other_anno</span><br></pre></td></tr></table></figure>
+
+<p>more info: genes file consists of gene name or gene id, one for each line.</p>
+<h3 id="gene-inquires-1"><a href="#gene-inquires-1" class="headerlink" title="gene inquires"></a>gene inquires</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">genesid</span></span><br><span class="line">AnnoGtf -t inquires -g test.gtf -it id -il gene -gs geneid1,genid2 -o test -od ./ -am UTR5,UTR5\;other,other_anno</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">genesname file</span></span><br><span class="line">AnnoGtf -t inquires -g test.gtf -it name -il exon -gf genename.tsv -o test -od ./ -am UTR5,UTR5\;other,other_anno</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="jupyter-sample"><a href="#jupyter-sample" class="headerlink" title="jupyter sample"></a>jupyter sample</h2><p>more usage:  <a target="_blank" rel="noopener" href="https://github.com/iOLIGO/AnnoKit/blob/main/tests/GTF.ipynb">https://github.com/iOLIGO/AnnoKit/blob/main/tests/GTF.ipynb</a>.</p>
+
+      </div>
+    </div>		
+  </div>
+</div>
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2024.<a href="/">ioligo</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br><a target="_blank" rel="noopener" href="https://github.com/iOLIGO">Star</a> me if you like.
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button" title="menu">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button>
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>pluaron</p>
+          <span class="tagline">oligo tools</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Model/">Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li></ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
+        <ul>
+          <li><a href="/docs/">docs</a></li>
+        <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/local.search.min.js"></script>
+
+</body>
+</html>

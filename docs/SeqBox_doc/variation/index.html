@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>ioligo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="pluaron">
+  <meta name="keywords" content="oligo, sequence, probe, FISH">
+  <meta name="description" content="Oligonucleotide sequence design">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.4.4',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/dist/images/html_tag.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/css/main.min.css">
+  
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.jside.menu.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+<div  class="single">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div class="header">
+  <div id="lx-aside" style="background-image: url(/dist/images/post_cover.min.jpeg)" data-stellar-background-ratio="0.5">
+    <div class="overlay">
+      <a href="javascript:;" class="popup-trigger" title="search"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+      <div class="page-title">
+        <div class="avatar"><a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"></a></div>
+        <span>2024-05-28</span>
+        <h2></h2>
+        
+        <div class="social-links">
+    <a href="https://github.com/iOLIGO" target="_blank" title="social-link"><i class="fa fa-github fa-fw"></i></a>
+    <a href="2119452560@qq.com" target="_blank" title="social-link"><i class="fa fa-envelope fa-fw"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="lx-main-content">
+  <div class="lx-post"> 
+    <div class="lx-entry padding">
+      <div>
+        <h2 id="variation"><a href="#variation" class="headerlink" title="variation"></a>variation</h2><p>random transformation of sequences, including deletions, additions and mutations.</p>
+<h3 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h3><details>
+    <summary>SeqBox variation</summary>
+
+<pre><code>usage: SeqBox variation [-h] [-out OUT] [-od OUT_DIR] [-vi VIN] [-vr VREPLACE]
+                        [-vd VDICT]
+
+optional arguments:
+-h, --help            show this help message and exit
+-out OUT, --out_file OUT
+                        sequence out file with TSV format
+-od OUT_DIR, --out_dir OUT_DIR
+                        out direction
+-vi VIN, --vinfile VIN
+-vr VREPLACE, --vreplace VREPLACE
+                        replace base number, like: 1,2,3
+-vd VDICT, --vdict VDICT
+                        variation dict, like: &#39;1:A-2:T-3:C-4:G&#39;
+</code></pre>
+</details>
+
+
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> seqbox <span class="keyword">import</span> SEQ</span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line">seq.name</span><br><span class="line"><span class="comment">#&#x27;test&#x27;</span></span><br><span class="line">seq.variation(replaces=<span class="string">&quot;1,2,3&quot;</span>, seq=<span class="string">&quot;ATCGTCGTAGTCGTAGCTAGTCGTAGTAGCTAGT&quot;</span>)</span><br><span class="line"><span class="comment">#2024-05-21 16:44:48.188 | WARNING  | seqbox.seq:variation:118 - not found params dict_base, use default dict_base</span></span><br><span class="line"><span class="comment">#&#x27;ATCGTCGTAGTCGTAGCTAGTCGTAGTAGCTAGT,ACGTCGTAGTCGTACTAGTCGTAGTAGCTAGT,ATCGTCGTAGTGTAGTAGTCGTAGTAGCTAT&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h3><p>The main parameters are base variation length(<code>-vr</code> or <code>--vreplace</code>), input file(<code>-vi</code> or <code>--vinfile</code>), and variation encoding(<code>-vd</code> or <code>--vdict</code>).</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SeqBox variation -vi test.tsv -out test_variation -vr 1,2,3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<details>
+    <summary>input: test.tsv</summary>
+
+<pre><code>#seq
+ACCATTAGCACCAACAGGCAAGCTCCTGCACGGTA
+GTGCAGGCCCAACTTTCCCCACCTATAGGCTACGG
+GACCGGGCGGGACTTTCGCCCAATCATCACATACC
+AACCGGTAGTCGATGAGCGCTCATTAACACGAAGC
+GTTCTGGTCATTTATCCTCCCTCAGGTACGGATTT
+TTGCCGCTCAATTGAAAGGTACTGCCAGGAGTGTC
+AGGCCAGAACGGATATACTAGTTGCTCCAACCTGA
+ATTGACAGCAGGCGCAAGACATGCCCTAAGCCCTA
+GTAACTATCCCGAGTCGACGCAGATTGTGCTTCGG
+CGTAGCCTAGGCGTGGGATTATAACTCTCCGGTAA
+</code></pre>
+</details>
+
+
+
+<details>
+    <summary>output: test_variation.tsv</summary>
+
+<pre><code>seq_raw	seq_var1	seq_var2	seq_var3
+ACCATTAGCACCAACAGGCAAGCTCCTGCACGGTA	ACCATAGCACCAACAGGCAAGCTCCTGCACGGTA	ACCATTAGCACCTACAGGCAGCTCCTGCACGGTA	ACCATTAGCACCAACAGGCAAGCTCCCGCCGGA
+GTGCAGGCCCAACTTTCCCCACCTATAGGCTACGG	GTGCAGGCCCAACTTTCCCCACCTATAGGATACGG	GTCAAGGCCCAACTTTCCCCACCTATAGGCTACGG	GTGCAGCCAACTTTCCCACCTATAGGCTACGG
+GACCGGGCGGGACTTTCGCCCAATCATCACATACC	GACCGCGGCGGGACTTTCGCCCAATCATCACATACC	GACCGGGCGGGACTTTCCCCAATGGATCACATACC	GACCGGGCGGGACTTTCGGCCAATCATCACATACA
+AACCGGTAGTCGATGAGCGCTCATTAACACGAAGC	AACCGGTAGTCGATAGCGCTCATTAACACGAAGC	AACCGGTAGTATGATGAGCGCTCATTAACACTAAGC	AACCGGTGTCGATGAGCGCTTCATTAACACGAAGC
+GTTCTGGTCATTTATCCTCCCTCAGGTACGGATTT	GTTCTGGTCATTTATCCTCCCTCAGGTACGGATTA	GTTCTGGTCATTTATCTCCCTCAGGTACGGATT	GTTCTGGTCATTATCCTCTTGTTCAGGTACGGATTT
+TTGCCGCTCAATTGAAAGGTACTGCCAGGAGTGTC	TTGCCGCTCAATTGAAAGGTACTGCCAGGAGTGTC	TTGCCGCTCAATTAAAGGTACTGCAGGAGTGTC	TTGCCGCTCAATTGTGGAAGGTACTGCCAGGCGTGTC
+AGGCCAGAACGGATATACTAGTTGCTCCAACCTGA	AGGCCAGAACGGATATACTAGTTGCTCCAACCTTA	AGGCCAGAACGCTATAAAACTAGTTGCTCCAACCTGA	AGGCACAACGGATATACTAGTGCTCCAACCTGA
+ATTGACAGCAGGCGCAAGACATGCCCTAAGCCCTA	ATTGACAGCAGGCGCAAACACATGCCCTAAGCCCTA	ATTGACAGCAGGCGCAAAACATGCCCTAAGCCTA	ATTGATGAGCAGGCGCAATACATGCCCTAGCCCTA
+GTAACTATCCCGAGTCGACGCAGATTGTGCTTCGG	GTAACTATCCCGAGTCGACGCAGATTGTGCTCGG	GTAACTATCCCGAGTCACGCAGATTGGAGCTTCGG	GTAACTATCCCGATCGACGCAGATTGTCCCTTCGG
+CGTAGCCTAGGCGTGGGATTATAACTCTCCGGTAA	CGTAGCCTAGGCGTGGGATATAACTCTCCGGTAA	CGTAAGCCTAGGCGTGGGATATAACTCTCCGGTAA	CGTAGCCGAAGCGTGGGATATAACTCTCCGGTAA
+</code></pre>
+</details>
+
+
+<h3 id="vdict"><a href="#vdict" class="headerlink" title="vdict"></a>vdict</h3><p>default variation dict: deletions, mutations, and additions, the ratio of the three mutation types is 1:1:1. Customize using parameters(<code>-vd</code> or <code>-vdict</code>), like: <code>0- ;00- ;1-A;2-T</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dict_var = &#123;<span class="string">&quot;0&quot;</span>:<span class="string">&quot;&quot;</span>, <span class="string">&quot;00&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;000&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;0000&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00000&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00001&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00002&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00003&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00004&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00005&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00006&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00007&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00008&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;00009&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;000010&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;000011&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;0001&quot;</span>:<span class="string">&quot;A&quot;</span>,<span class="string">&quot;001&quot;</span>:<span class="string">&quot;A&quot;</span>,<span class="string">&quot;01&quot;</span>:<span class="string">&quot;A&quot;</span>,<span class="string">&quot;1&quot;</span>:<span class="string">&quot;A&quot;</span>,<span class="string">&quot;0002&quot;</span>:<span class="string">&quot;T&quot;</span>,<span class="string">&quot;002&quot;</span>:<span class="string">&quot;T&quot;</span>,<span class="string">&quot;02&quot;</span>:<span class="string">&quot;T&quot;</span>,<span class="string">&quot;2&quot;</span>:<span class="string">&quot;T&quot;</span>,<span class="string">&quot;0003&quot;</span>:<span class="string">&quot;C&quot;</span>,<span class="string">&quot;003&quot;</span>:<span class="string">&quot;C&quot;</span>,<span class="string">&quot;03&quot;</span>:<span class="string">&quot;C&quot;</span>,<span class="string">&quot;3&quot;</span>:<span class="string">&quot;C&quot;</span>,<span class="string">&quot;04&quot;</span>:<span class="string">&quot;G&quot;</span>,<span class="string">&quot;004&quot;</span>:<span class="string">&quot;G&quot;</span>,<span class="string">&quot;0004&quot;</span>:<span class="string">&quot;G&quot;</span>,<span class="string">&quot;4&quot;</span>:<span class="string">&quot;G&quot;</span>,</span><br><span class="line"><span class="string">&quot;5&quot;</span>:<span class="string">&quot;AA&quot;</span>,<span class="string">&quot;6&quot;</span>:<span class="string">&quot;AT&quot;</span>,<span class="string">&quot;7&quot;</span>:<span class="string">&quot;AC&quot;</span>,<span class="string">&quot;8&quot;</span>:<span class="string">&quot;AG&quot;</span>,<span class="string">&quot;9&quot;</span>:<span class="string">&quot;TA&quot;</span>,<span class="string">&quot;10&quot;</span>:<span class="string">&quot;TT&quot;</span>,<span class="string">&quot;11&quot;</span>:<span class="string">&quot;TC&quot;</span>,<span class="string">&quot;12&quot;</span>:<span class="string">&quot;TG&quot;</span>,<span class="string">&quot;13&quot;</span>:<span class="string">&quot;CA&quot;</span>,<span class="string">&quot;14&quot;</span>:<span class="string">&quot;CT&quot;</span>,<span class="string">&quot;15&quot;</span>:<span class="string">&quot;CC&quot;</span>,<span class="string">&quot;16&quot;</span>:<span class="string">&quot;CG&quot;</span>,<span class="string">&quot;17&quot;</span>:<span class="string">&quot;GA&quot;</span>,<span class="string">&quot;18&quot;</span>:<span class="string">&quot;GT&quot;</span>,<span class="string">&quot;19&quot;</span>:<span class="string">&quot;GC&quot;</span>,<span class="string">&quot;20&quot;</span>:<span class="string">&quot;GG&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+
+      </div>
+    </div>		
+  </div>
+</div>
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2024.<a href="/">ioligo</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br><a target="_blank" rel="noopener" href="https://github.com/iOLIGO">Star</a> me if you like.
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button" title="menu">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button>
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>pluaron</p>
+          <span class="tagline">oligo tools</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Model/">Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li></ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
+        <ul>
+          <li><a href="/docs/">docs</a></li>
+        <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/local.search.min.js"></script>
+
+</body>
+</html>

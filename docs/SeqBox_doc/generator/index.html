@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>ioligo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="pluaron">
+  <meta name="keywords" content="oligo, sequence, probe, FISH">
+  <meta name="description" content="Oligonucleotide sequence design">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.4.4',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/dist/images/html_tag.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/css/main.min.css">
+  
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.jside.menu.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+<div  class="single">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div class="header">
+  <div id="lx-aside" style="background-image: url(/dist/images/post_cover.min.jpeg)" data-stellar-background-ratio="0.5">
+    <div class="overlay">
+      <a href="javascript:;" class="popup-trigger" title="search"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+      <div class="page-title">
+        <div class="avatar"><a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"></a></div>
+        <span>2024-05-28</span>
+        <h2></h2>
+        
+        <div class="social-links">
+    <a href="https://github.com/iOLIGO" target="_blank" title="social-link"><i class="fa fa-github fa-fw"></i></a>
+    <a href="2119452560@qq.com" target="_blank" title="social-link"><i class="fa fa-envelope fa-fw"></i></a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="lx-main-content">
+  <div class="lx-post"> 
+    <div class="lx-entry padding">
+      <div>
+        <h2 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h2><p>sequence generator</p>
+<h3 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h3><details>
+    <summary>SeqBox generator</summary>
+
+<pre><code>usage: SeqBox generator [-h] [-out OUT] [-od OUT_DIR]
+                        [-gt &#123;random,norepeat,distance&#125;] [-gn GNUMBER]
+                        [-gts GTIMES] [-gc GCHAR] [-gd GDISTANCE] [-gl GLEN]
+
+optional arguments:
+-h, --help            show this help message and exit
+-out OUT, --out_file OUT
+                        sequence out file with TSV format
+-od OUT_DIR, --out_dir OUT_DIR
+                        out direction
+-gt &#123;random,norepeat,distance&#125;, --gtype &#123;random,norepeat,distance&#125;
+-gn GNUMBER, --gnumber GNUMBER
+                        sequence number
+-gts GTIMES, --gtimes GTIMES
+                        Number of runs
+-gc GCHAR, --gchar GCHAR
+                        generator charset, like: ATCG
+-gd GDISTANCE, --gdistance GDISTANCE
+                        distance
+-gl GLEN, --glen GLEN
+                        generator sequence length
+</code></pre>
+</details>
+
+
+<h3 id="random"><a href="#random" class="headerlink" title="random"></a>random</h3><p>Randomly generated sequence, possible repetitions.</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> seqbox <span class="keyword">import</span> SEQ</span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line">seq.name</span><br><span class="line"><span class="comment"># &#x27;test&#x27;</span></span><br><span class="line">Grandom = seq.Gseq_random(seq_len=<span class="number">35</span>)</span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> n &lt;= <span class="number">10</span>:</span><br><span class="line">    seq = <span class="built_in">next</span>(Grandom)</span><br><span class="line">    <span class="built_in">print</span>(seq)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line"><span class="comment">#2024-05-21 15:16:40.176 | WARNING  | seqbox.seq:Gseq_random:150 - not found params char_set, use &#x27;ATCG&#x27; with default</span></span><br><span class="line"><span class="comment">#CATCGTGCATAACTCGGTAGACAGGCAAGGCAACG</span></span><br><span class="line"><span class="comment">#CACTCGGTCTTGCCATGTGTCCTGTAGGTGACTAA</span></span><br><span class="line"><span class="comment">#AGGAACCCCCGTAGTAGCCCGACAGCAAGGTTCAT</span></span><br><span class="line"><span class="comment">#AGTGTGGATAAAAGAGCACCCACAGAGGACCAAAA</span></span><br><span class="line"><span class="comment">#CAAAACGTATGGCACGCTAACCATTTTCTAAACCG</span></span><br><span class="line"><span class="comment">#GATTTAAGCACAAGACCCTTGTTGGAAAGCAATTC</span></span><br><span class="line"><span class="comment">#AGGTCAACGGGCATTTAGTTCAGTTCCAGTGACCC</span></span><br><span class="line"><span class="comment">#ATGACAGGGAGTGTCATCTGAAAGTGCCAACGGGG</span></span><br><span class="line"><span class="comment">#TAGACTCACTATTATGCCTTCCATTCTCGGAGGTG</span></span><br><span class="line"><span class="comment">#CCTCACCGTTTCGCGGAACGTTTCAACCAAACTAA</span></span><br><span class="line"><span class="comment">#TGAGGGTCTACGATAGCTGTCAAGGAAGACCACTT</span></span><br><span class="line"></span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line">Grandom_RNA = seq.Gseq_random(seq_len=<span class="number">35</span>, char_set=<span class="string">&quot;AUCG&quot;</span>)</span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> n &lt;= <span class="number">10</span>:</span><br><span class="line">    seq = <span class="built_in">next</span>(Grandom_RNA)</span><br><span class="line">    <span class="built_in">print</span>(seq)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line"><span class="comment">#UGAGGACGAGGGCGGUGAUAGGCAUUUUAAUUUGG</span></span><br><span class="line"><span class="comment">#UUGUUUAUCUAGUCCUCCAGCCUCGGAACCGGAAC</span></span><br><span class="line"><span class="comment">#GCUACAUUGUCUGCGGGUUUGACAACGACACGGAU</span></span><br><span class="line"><span class="comment">#CACUGAAGGCUGUUCCCUACUGACUUCGAGGCGCA</span></span><br><span class="line"><span class="comment">#CGAGACUCUUGAAUGUAUAAAAGGUAAGAUAUAUC</span></span><br><span class="line"><span class="comment">#GCCUUUUUUCGGGAGUUACUUCGAGUUGUUCAAUC</span></span><br><span class="line"><span class="comment">#AAGUGUUCCGACCUGAUCCUGCCUCCUGAUCACGU</span></span><br><span class="line"><span class="comment">#GGGGUGGAUUCUGGUAUAGGUGAGGCUAAUCAGUU</span></span><br><span class="line"><span class="comment">#CCUAGCACGACCAAGUUCAAUAGAACGAUCAGAGG</span></span><br><span class="line"><span class="comment">#CGAAUGUACGAGAUCGUCAGGCGGGCCGAUGUUGG</span></span><br><span class="line"><span class="comment">#AUCUGACCUAGGCCUUGGGAGGGUACCCACAAAAG</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h4><p>The main parameters include the length(<code>-gl</code> or <code>--glen</code>) and number(<code>-gn</code> or <code>-gnumber</code>) of generated sequences.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SeqBox generator -gt random -gn 100 -gl 35 -out test_random</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<details>
+    <summary>output: test_random.tsv</summary>
+
+<pre><code>#generator_random:seq_len:35;char_set:ATCG
+GGTCCGACCTCATCTGGATGCTCCAATGTGGGCTG
+AGGCATATGGATCGCCGACACCCGTGCTACAGTTA
+TCAAGCGCGAACCGGGTACCTGCCGAAACCGTATA
+AACAGTGTTGCGCAGTGCCTGCACTTAAACAAATC
+GATATAGGGTCTCGTTAGTACGACGATTTCGCGAG
+CCCACAGGTCGCAGACTCCGCTGTTGCTTGAAGGC
+CGTTAAAGCTCAATCATCAACCCGATACGTTGTCT
+GAGAGCCTAGAACAAGGTACACCGAAGACGAGACG
+GCGCGGCTGTCCTTAGATATAGGTAGCAATACTGA
+...
+CGTACTGATCAAATAACCCCGCAGACGGGTAATGC
+</code></pre>
+</details>
+
+<h3 id="norepeat"><a href="#norepeat" class="headerlink" title="norepeat"></a>norepeat</h3><p>randomly generate non-repeating sequences.</p>
+<h4 id="API-1"><a href="#API-1" class="headerlink" title="API"></a>API</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> seqbox <span class="keyword">import</span> SEQ</span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line">seq.name</span><br><span class="line"><span class="comment">#&#x27;test&#x27;</span></span><br><span class="line">Gnorepeat = seq.Gseq_norepeat(seq_len=<span class="number">35</span>)</span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> n &lt;= <span class="number">10</span>:</span><br><span class="line">    seq = <span class="built_in">next</span>(Gnorepeat)</span><br><span class="line">    <span class="built_in">print</span>(seq)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line"><span class="comment">#2024-05-21 16:08:06.289 | WARNING  | seqbox.seq:Gseq_norepeat:177 - not found params char_set, use &#x27;ATCG&#x27; with default</span></span><br><span class="line"><span class="comment">#GGTTGTAACAGCGATAACACGGTTTAACGGACCAG</span></span><br><span class="line"><span class="comment">#GTTAACTCTAACATATACCTCCTTTCTTCGCCACA</span></span><br><span class="line"><span class="comment">#GCGTCGGATATAGAAGCTTGCGCCCTAATGTTATA</span></span><br><span class="line"><span class="comment">#AATGCCTTGCTCGATTCAATTAGCTCCCAAACTTT</span></span><br><span class="line"><span class="comment">#TTGAGAGAGGTCCTGTCGTTCTTATCCTTTCCTAA</span></span><br><span class="line"><span class="comment">#CGTAACATATAGGATACTTACACGCAGGAGAGTAT</span></span><br><span class="line"><span class="comment">#CCCACCCTACGCATCCGCCGTCGGTCTGTCGCTAT</span></span><br><span class="line"><span class="comment">#AACGCGATGTCTAGAAGACCATGTTTCACCTAACT</span></span><br><span class="line"><span class="comment">#CGGCGGTGGTTATGGGATATGGGGCTCTGAGTGAG</span></span><br><span class="line"><span class="comment">#GTGCAGCCACGTGAATTTACGTCCTTCGCCGATCC</span></span><br><span class="line"><span class="comment">#CGGCAAATACTCTTGGATAGAGATTAGCAGCGAGC</span></span><br><span class="line"></span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line">Gnorepeat_RNA = seq.Gseq_random(seq_len=<span class="number">35</span>, char_set=<span class="string">&quot;AUCG&quot;</span>)</span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> n &lt;= <span class="number">10</span>:</span><br><span class="line">    seq = <span class="built_in">next</span>(Gnorepeat_RNA)</span><br><span class="line">    <span class="built_in">print</span>(seq)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line"><span class="comment">#CGUCUUAAUUAAACCUCGAAUUGGGAGUUGGCUUG</span></span><br><span class="line"><span class="comment">#CCCAAUCUUCCACUUCUAUAGCGGUAACAUUAAAU</span></span><br><span class="line"><span class="comment">#UCACAUGCAACUCCACGGAACCAAUUAAACCAGGA</span></span><br><span class="line"><span class="comment">#GUGGAAAACCACUUCCAGACUGUAAAGCCAAUGGU</span></span><br><span class="line"><span class="comment">#CUGGACCUACGAUCGCAAAGAUAUAGCUCCUGUAG</span></span><br><span class="line"><span class="comment">#GAGUUUGGCUAGCAGUAUGAGGAGAUUGCAAAUCU</span></span><br><span class="line"><span class="comment">#UCGCUCACGGCGAAACAAUUCUGUAUUUGAGAAGG</span></span><br><span class="line"><span class="comment">#UUAUUCACGAUAUCGGCGGACAGCGAAGGAGUUAU</span></span><br><span class="line"><span class="comment">#AGGACCCUACAUGACGCACAGAGACCAGGUAUCGG</span></span><br><span class="line"><span class="comment">#AGUGUGGGCGUCUCCCGAAACGAAUCGCAUUGUUC</span></span><br><span class="line"><span class="comment">#UUCGUACCGAAGGUUUAGUGGAAUAGGUGGAGAGU</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="CLI-1"><a href="#CLI-1" class="headerlink" title="CLI"></a>CLI</h4><p>The main parameters include the length(<code>-gl</code> or <code>--glen</code>) and number(<code>-gn</code> or <code>-gnumber</code>) of generated sequences.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SeqBox generator -gt norepeat -gn 100 -gl 35 -out test_norepeat</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<details>
+    <summary>output: test_norepeat.tsv</summary>
+
+<pre><code>#generator_norepeat:seq_len:35;char_set:ATCG
+ACTAGATTTTGATTTGGTCCGGAGTTAGAGATCGT
+GGGATCGAAAGGGGTCGCCTCTCTTGAGAGCATTG
+GCTATTTATTCAAATAGACTATATACAACAGTACA
+GGACCTGTAGCGGCGTAGAATGTGCTGTGATACGA
+CCTTGGACAGTGGGGTATAACCTATGGTGTGAGTA
+TCACCTTTATTCAGGCGTATCTACGGTACTATCAA
+GTAGGGTTTCTACCGTTTGAGCATGTAGATGCCAT
+GCTTAAGTGATGTAAGGTGGCTTACCATCATCGAA
+...
+CATACCACGTAACAACCCGTAGGTTCGCGTTAGGT
+</code></pre>
+</details>
+
+
+<h3 id="distance"><a href="#distance" class="headerlink" title="distance"></a>distance</h3><p>randomly generate sequences with <a target="_blank" rel="noopener" href="https://github.com/ztane/python-Levenshtein">edit distances</a> between sequences greater than a fixed value.</p>
+<h4 id="API-2"><a href="#API-2" class="headerlink" title="API"></a>API</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> seqbox <span class="keyword">import</span> SEQ</span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line">seq.name</span><br><span class="line"><span class="comment">#&#x27;test&#x27;</span></span><br><span class="line">Gdistance = seq.Gseq_distance(seq_len=<span class="number">35</span>, distance=<span class="number">5</span>)</span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> n &lt;= <span class="number">10</span>:</span><br><span class="line">    seq = <span class="built_in">next</span>(Gdistance)</span><br><span class="line">    <span class="built_in">print</span>(seq)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line"><span class="comment">#2024-05-21 16:13:45.385 | WARNING  | seqbox.seq:Gseq_random:150 - not found params char_set, use &#x27;ATCG&#x27; with default</span></span><br><span class="line"><span class="comment">#CCGAGATAAGATACCGCCGCGGGCAACAGCAACCT</span></span><br><span class="line"><span class="comment">#TGAACGTACTTTTCGTCCTGGCGTCATGGGCTAGC</span></span><br><span class="line"><span class="comment">#ACTTAATCTTTGTTTCGACTGTGAGTCACCTATGT</span></span><br><span class="line"><span class="comment">#ACTGTTTCTCCGAGCACTGTCCAATCGTCTTCCCT</span></span><br><span class="line"><span class="comment">#CCTTACGTCCCGTTGTGCGTGTCCATTCGGCAACG</span></span><br><span class="line"><span class="comment">#TAGATTAACTAGCTTGCCGATCGATCAGTTAATTC</span></span><br><span class="line"><span class="comment">#GGAGACCTCAGCAAAGTTCCGCCTCTAAACAGGTA</span></span><br><span class="line"><span class="comment">#CCTCTTTAACATATTGCCTAATCACCGTGGGATAT</span></span><br><span class="line"><span class="comment">#TCGTTAGGAATGTGGACATTTTGAATGGCCAACCT</span></span><br><span class="line"><span class="comment">#TGAAGTAATATTAATCGAAGTTTATTGAGCTAACC</span></span><br><span class="line"><span class="comment">#AGTTGACATTAGCACGTGTGGGATGCGGTCCGAAT</span></span><br><span class="line"></span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line">Gdistance_RNA = seq.Gseq_distance(seq_len=<span class="number">35</span>, char_set=<span class="string">&quot;AUCG&quot;</span>, distance=<span class="number">5</span>)</span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> n &lt;= <span class="number">10</span>:</span><br><span class="line">    seq = <span class="built_in">next</span>(Gdistance_RNA)</span><br><span class="line">    <span class="built_in">print</span>(seq)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line"><span class="comment">#UGUGGCUCCGCACACUGGGCGCUGCCGUGAUGAGA</span></span><br><span class="line"><span class="comment">#ACUAGCAACGACGUAAUAGGUGCUAAUUUACAGUU</span></span><br><span class="line"><span class="comment">#CCUCAACGUAGUAGGGAUUCCAGCUCUACGCAUGA</span></span><br><span class="line"><span class="comment">#CCGCAGACCCAUAGUUAUAUAGCUUCCACUUUUUA</span></span><br><span class="line"><span class="comment">#CAGAGGUUCUUGCGUCUAAUCUCAUUGCAAGUAAU</span></span><br><span class="line"><span class="comment">#GCCCAUGGGGUACUCUUGCCCGAUGUUUGACUGUG</span></span><br><span class="line"><span class="comment">#UCUCCUUCGGGUAGGUGCCACACCGAGCCUUGAGU</span></span><br><span class="line"><span class="comment">#AACCAGAGAGUGACCAUUUGACAACGCACUACCUU</span></span><br><span class="line"><span class="comment">#UCACGUCAAGUUAAGCGAGCAAGAGGGCGCGUCGU</span></span><br><span class="line"><span class="comment">#UAACCUAUGUUCUACUCUUCACUUCUAAGUUAAGG</span></span><br><span class="line"><span class="comment">#CUUCGACCUCUACAUGAAGGCAAGCUUUGAAGUAU</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">seq = SEQ(name=<span class="string">&quot;test&quot;</span>)</span><br><span class="line"><span class="comment"># When the distance is relatively large, it takes too long to obtain a sufficient number of entries. </span></span><br><span class="line"><span class="comment"># At this time, set the times parameter to control the number of attempts and avoid too long loops.</span></span><br><span class="line">Gdistance = seq.Gseq_distance(seq_len=<span class="number">35</span>, distance=<span class="number">35</span>, times=<span class="number">10</span>)</span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> n &lt; <span class="number">10</span>:</span><br><span class="line">    seq = <span class="built_in">next</span>(Gdistance)</span><br><span class="line">    <span class="built_in">print</span>(seq)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line"><span class="comment">#2024-05-21 16:31:31.828 | WARNING  | seqbox.seq:Gseq_random:150 - not found params char_set, use &#x27;ATCG&#x27; with default</span></span><br><span class="line"><span class="comment">#GGAATATAGCGTTATTCAGACCTAGTAGACAATTC</span></span><br><span class="line"><span class="comment">#---------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">#StopIteration                             Traceback (most recent call last)</span></span><br><span class="line"><span class="comment">#Cell In[14], line 3</span></span><br><span class="line"><span class="comment">#      1 n = 0</span></span><br><span class="line"><span class="comment">#      2 while n &lt; 10:</span></span><br><span class="line"><span class="comment">#----&gt; 3     seq = next(Gdistance)</span></span><br><span class="line"><span class="comment">#      4     print(seq)</span></span><br><span class="line"><span class="comment">#      5     n = n + 1</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#StopIteration: </span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="CLI-2"><a href="#CLI-2" class="headerlink" title="CLI"></a>CLI</h4><p>The main parameters include the length(<code>-gl</code> or <code>--glen</code>), number(<code>-gn</code> or <code>-gnumber</code>), distance(<code>-gd</code> or <code>--gdistance</code>) and try_times(<code>-gts</code> or <code>gtimes</code>) of generated sequences.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SeqBox generator -gt distance -gn 100 -gl 35 -gd 5 -out test_distance</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<details>
+    <summary>output: test_norepeat.tsv</summary>
+
+<pre><code>#generator_distance:seq_len:35;char_set:ATCG;distance:5
+ACCATTAGCACCAACAGGCAAGCTCCTGCACGGTA
+GTGCAGGCCCAACTTTCCCCACCTATAGGCTACGG
+GACCGGGCGGGACTTTCGCCCAATCATCACATACC
+AACCGGTAGTCGATGAGCGCTCATTAACACGAAGC
+GTTCTGGTCATTTATCCTCCCTCAGGTACGGATTT
+TTGCCGCTCAATTGAAAGGTACTGCCAGGAGTGTC
+AGGCCAGAACGGATATACTAGTTGCTCCAACCTGA
+ATTGACAGCAGGCGCAAGACATGCCCTAAGCCCTA
+GTAACTATCCCGAGTCGACGCAGATTGTGCTTCGG
+</code></pre>
+</details>
+
+
+      </div>
+    </div>		
+  </div>
+</div>
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2024.<a href="/">ioligo</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br><a target="_blank" rel="noopener" href="https://github.com/iOLIGO">Star</a> me if you like.
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button" title="menu">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button>
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/dist/images/oligo_logo_1vs1.png" alt="pluaron"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>pluaron</p>
+          <span class="tagline">oligo tools</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Model/">Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li></ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
+        <ul>
+          <li><a href="/docs/">docs</a></li>
+        <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="https://cdn.jsdelivr.net/npm/theme-lx@0.4.4/source/dist/js/local.search.min.js"></script>
+
+</body>
+</html>
